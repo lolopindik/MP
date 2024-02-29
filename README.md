@@ -1,16 +1,9 @@
-# market_place
+<h1># Market_place</h1>
 
-A new Flutter project.
+![image](https://github.com/lolopindik/MP/assets/136455904/a3db80b4-9cd8-4328-8e5f-75b4ba87cab4)
 
-## Getting Started
+![image](https://github.com/lolopindik/MP/assets/136455904/e9163fad-f1cd-4d15-8587-5949b3749bd2)
 
-This project is a starting point for a Flutter application.
+![image](https://github.com/lolopindik/MP/assets/136455904/2336dac5-c250-4787-9ec1-678ae6f27e17)
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![image](https://github.com/lolopindik/MP/assets/136455904/285e8f98-9926-4dc2-8d32-4621340f4d0f)
