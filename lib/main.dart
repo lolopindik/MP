@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'grid_cards.dart';
+import 'pages/grid_cards.dart';
 
 void main() {
   runApp(const MyApp());

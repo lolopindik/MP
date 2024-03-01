@@ -39,3 +39,10 @@ class Product {
     ];
   }
 }
+// #### Переделать массив для оптимизации кода
+// class ProductNew {
+//   final String link;
+//   final int cost;
+//   ProductNew({required this.link, required this.cost});
+// }
+// List<ProductNew> newArray = [ProductNew(link: "https://", cost: 200)];
