@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:market_place/pages/product_card.dart';
 import '../types/product.dart';
 import '../widgets/grid_cards_widgets.dart';
 
@@ -24,37 +25,53 @@ class GridCards extends StatelessWidget {
         itemBuilder: (context, index) {
           final imagePath = Product.getimagePaths()[index];
           final cost = Product.getCost()[index];
+          final description = Product.getDescription()[index];
 
-          return Padding(
-            padding: const EdgeInsets.only(top: 15, bottom: 5),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Flexible(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20.0),
-                    child: Image.network(
-                      imagePath,
-                      height: MediaQuery.of(context).size.height * 0.5,
-                      fit: BoxFit.cover,
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProductCard(
+                    imagePath: imagePath,
+                    cost: cost,
+                    description: description,
+                  ),
+                ),
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(top: 15, bottom: 5),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Flexible(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20.0),
+                      child: Image.network(
+                        imagePath,
+                        height: MediaQuery.of(context).size.height * 0.5,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
-                ),
-                const FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: Text(
-                    "Название товара", // в ДАЛЬНЕЙШЕМ СЛЕДУЕТ ЗАМЕНИТЬ НА НАСТОЯЩЕЕ НАЗВАНИЕ
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  const FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      "Название товара",
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
                   ),
-                ),
-                FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: Text(
-                    "$cost руб.",
-                    style: const TextStyle(fontSize: 14, color: Colors.green),
+                  FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      "$cost руб.",
+                      style: const TextStyle(fontSize: 14, color: Colors.green),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         },

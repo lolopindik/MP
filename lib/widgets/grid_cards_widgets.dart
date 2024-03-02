@@ -58,7 +58,7 @@ Widget buildDrawer(BuildContext context) {
   );
 }
 
-  Widget buildSearchBar(BuildContext context) {
+Widget buildSearchBar(BuildContext context) {
   return LayoutBuilder(
     builder: (BuildContext context, BoxConstraints constraints) {
       if (constraints.maxWidth < 400) {
@@ -67,7 +67,7 @@ Widget buildDrawer(BuildContext context) {
             // тут потоМ будет окно с выплывающей строкой поиска
           },
           child: const Padding(
-            padding: EdgeInsets.only(left:10,right: 80, top: 40),
+            padding: EdgeInsets.only(left: 10, right: 80, top: 40),
             child: Icon(Icons.search_rounded, color: Colors.white),
           ),
         );
