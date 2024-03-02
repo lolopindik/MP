@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Product {
   static List<String> getimagePaths() {
     return [
@@ -36,6 +38,26 @@ class Product {
       293,
       435,
       235
+    ];
+  }
+
+  static List<String> getDescription() {
+    return [
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      ''
     ];
   }
 }
