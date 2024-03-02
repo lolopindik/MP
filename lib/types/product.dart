@@ -61,7 +61,7 @@ class Product {
     ];
   }
 }
-// #### Переделать массив для оптимизации кода
+// #### Переделать массивы для оптимизации кода
 // class ProductNew {
 //   final String link;
 //   final int cost;
