@@ -58,26 +58,38 @@ Widget buildDrawer(BuildContext context) {
   );
 }
 
-Widget buildSearchBar(BuildContext context) {
+  Widget buildSearchBar(BuildContext context) {
   return LayoutBuilder(
     builder: (BuildContext context, BoxConstraints constraints) {
-      return Center(
-        child: Container(
-          width: constraints.maxWidth * 0.3,
-          height: constraints.maxHeight * 0.6,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(20),
+      if (constraints.maxWidth < 400) {
+        return GestureDetector(
+          onTap: () {
+            // тут потоМ будет окно с выплывающей строкой поиска
+          },
+          child: const Padding(
+            padding: EdgeInsets.only(left:10,right: 80, top: 40),
+            child: Icon(Icons.search_rounded, color: Colors.white),
           ),
-          child: const TextField(
-            decoration: InputDecoration(
-              prefixIcon: Icon(Icons.search),
-              hintText: '...',
-              border: InputBorder.none,
+        );
+      } else {
+        return Center(
+          child: Container(
+            width: constraints.maxWidth * 0.3,
+            height: constraints.maxHeight * 0.6,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: const TextField(
+              decoration: InputDecoration(
+                prefixIcon: Icon(Icons.search),
+                hintText: '...',
+                border: InputBorder.none,
+              ),
             ),
           ),
-        ),
-      );
+        );
+      }
     },
   );
 }
