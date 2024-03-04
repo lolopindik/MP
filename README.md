@@ -2,7 +2,7 @@
 
 ![image](https://github.com/lolopindik/MP/assets/136455904/6c2ffca8-426e-4534-b6e1-afd4a6ee2681)
 
-![image](https://github.com/lolopindik/MP/assets/136455904/9eb2865a-4588-4ff7-baf6-7015f8b2ddbf)
+![image](https://github.com/lolopindik/MP/assets/136455904/856255bf-251c-4bfd-9fca-ca4197c4bf44)
 
 ![image](https://github.com/lolopindik/MP/assets/136455904/82d73a47-b3a1-45ca-b0ea-16c94a1b2dbc)
 
