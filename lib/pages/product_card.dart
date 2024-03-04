@@ -9,36 +9,38 @@ class ProductCard extends StatelessWidget {
   final String name;
   final List<String> imageSlider;
 
-  const ProductCard(
-      {super.key,
-      required this.imagePath,
-      required this.cost,
-      required this.description,
-      required this.name,
-      required this.imageSlider});
+  const ProductCard({
+    super.key,
+    required this.imagePath,
+    required this.cost,
+    required this.description,
+    required this.name,
+    required this.imageSlider,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(context),
       bottomNavigationBar: BottomAppBar(
-          child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-        ],
-      )),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Center(
+            Expanded(
               child: CarouselSlider(
                 items: imageSlider.map((image) {
                   return Image.network(image); // Assuming your images are URLs
@@ -47,28 +49,40 @@ class ProductCard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            Text(
-              name,
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            Text(
-              "$cost руб.",
-              style: const TextStyle(fontSize: 18, color: Colors.green),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              description,
-              style: const TextStyle(fontSize: 16),
-            ),
-            const SizedBox(height: 50),
-            Center(
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
-                onPressed: () {},
-                child: const Text(
-                  "Купить",
-                  style: TextStyle(color: Colors.white),
-                ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    name,
+                    style:
+                        const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    "$cost руб.",
+                    style: const TextStyle(fontSize: 18, color: Colors.green),
+                  ),
+                  const SizedBox(height: 16),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Text(
+                        description,
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Center(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+                      onPressed: () {},
+                      child: const Text(
+                        "Купить",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
