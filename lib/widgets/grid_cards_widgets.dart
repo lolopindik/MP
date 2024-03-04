@@ -29,6 +29,7 @@ AppBar buildAppBar(BuildContext context) {
         onPressed: () {},
       ),
     ],
+    //нужно пофикстить поиск в appbar или переместить поиск в drawer
     flexibleSpace: buildSearchBar(context), // Добавляем поисковую строку
   );
 }
@@ -61,17 +62,7 @@ Widget buildDrawer(BuildContext context) {
 Widget buildSearchBar(BuildContext context) {
   return LayoutBuilder(
     builder: (BuildContext context, BoxConstraints constraints) {
-      if (constraints.maxWidth < 400) {
-        return GestureDetector(
-          onTap: () {
-            // тут потоМ будет окно с выплывающей строкой поиска
-          },
-          child: const Padding(
-            padding: EdgeInsets.only(left: 10, right: 80, top: 40),
-            child: Icon(Icons.search_rounded, color: Colors.white),
-          ),
-        );
-      } else {
+      if (constraints.maxWidth > 400) {
         return Center(
           child: Container(
             width: constraints.maxWidth * 0.3,
@@ -89,6 +80,8 @@ Widget buildSearchBar(BuildContext context) {
             ),
           ),
         );
+      } else {
+        return Container();
       }
     },
   );

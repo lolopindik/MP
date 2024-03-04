@@ -1,38 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:market_place/widgets/grid_cards_widgets.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class ProductCard extends StatelessWidget {
   final String imagePath;
   final int cost;
   final String description;
+  final String name;
+  final List<String> imageSlider;
 
-  const ProductCard({
-    super.key,
-    required this.imagePath,
-    required this.cost,
-    required this.description,
-  });
+  const ProductCard(
+      {super.key,
+      required this.imagePath,
+      required this.cost,
+      required this.description,
+      required this.name,
+      required this.imageSlider});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(context),
+      bottomNavigationBar: BottomAppBar(
+          child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ],
+      )),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(
-              child: Image.network(
-                imagePath,
-                height: MediaQuery.of(context).size.height * 0.3,
-                fit: BoxFit.cover,
+              child: CarouselSlider(
+                items: imageSlider.map((image) {
+                  return Image.network(image); // Assuming your images are URLs
+                }).toList(),
+                options: CarouselOptions(height: 200.0),
               ),
             ),
             const SizedBox(height: 16),
-            const Text(
-              "Название товара",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            Text(
+              name,
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             Text(
               "$cost руб.",
@@ -43,22 +60,19 @@ class ProductCard extends StatelessWidget {
               description,
               style: const TextStyle(fontSize: 16),
             ),
+            const SizedBox(height: 50),
+            Center(
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+                onPressed: () {},
+                child: const Text(
+                  "Купить",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
           ],
         ),
-      ),
-      //бужет вынесен в отдельный виждет
-      bottomNavigationBar: BottomAppBar(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              IconButton(
-                icon: const Icon(Icons.arrow_back),
-                onPressed: () {
-                  Navigator.pop(context); 
-                },
-              ),
-            ],
-          ),
       ),
     );
   }

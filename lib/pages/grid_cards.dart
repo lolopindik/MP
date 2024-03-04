@@ -16,26 +16,25 @@ class GridCards extends StatelessWidget {
       drawer: buildDrawer(context),
       backgroundColor: Colors.white,
       body: GridView.builder(
-        itemCount: Product.getimagePaths().length,
+        itemCount: productList.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: crossAxisCount,
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
         ),
         itemBuilder: (context, index) {
-          final imagePath = Product.getimagePaths()[index];
-          final cost = Product.getCost()[index];
-          final description = Product.getDescription()[index];
-
+          final product = productList[index];
           return GestureDetector(
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => ProductCard(
-                    imagePath: imagePath,
-                    cost: cost,
-                    description: description,
+                    imagePath: product.imagePaths,
+                    cost: product.price,
+                    description: product.description,
+                    name: product.name,
+                    imageSlider: product.imageSlider
                   ),
                 ),
               );
@@ -49,7 +48,7 @@ class GridCards extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20.0),
                       child: Image.network(
-                        imagePath,
+                        product.imagePaths,
                         height: MediaQuery.of(context).size.height * 0.5,
                         fit: BoxFit.cover,
                       ),
@@ -66,7 +65,7 @@ class GridCards extends StatelessWidget {
                   FittedBox(
                     fit: BoxFit.scaleDown,
                     child: Text(
-                      "$cost руб.",
+                      "${product.price} руб.",
                       style: const TextStyle(fontSize: 14, color: Colors.green),
                     ),
                   ),
