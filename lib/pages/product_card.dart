@@ -1,22 +1,37 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:market_place/widgets/grid_cards_widgets.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class ProductCard extends StatelessWidget {
   final String imagePath;
-  final int cost;
+  final int cost; 
   final String description;
   final String name;
   final List<String> imageSlider;
 
   const ProductCard({
-    super.key,
+    super.key, 
     required this.imagePath,
     required this.cost,
     required this.description,
     required this.name,
     required this.imageSlider,
   });
+
+  factory ProductCard.fromMap(Map<String, dynamic> product) {
+    // Apply jsonDecode to convert the 'imageSlider' JSON string to a List<String>
+    List<String> imageSlider =
+        jsonDecode(product['imageSlider']).cast<String>();
+
+    return ProductCard(
+      imagePath: product['imagePaths'],
+      cost: product['price'],
+      description: product['description'],
+      name: product['name'],
+      imageSlider: imageSlider,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,8 +70,8 @@ class ProductCard extends StatelessWidget {
                 children: [
                   Text(
                     name,
-                    style:
-                        const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   Text(
                     "$cost руб.",
@@ -74,7 +89,8 @@ class ProductCard extends StatelessWidget {
                   const SizedBox(height: 16),
                   Center(
                     child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue),
                       onPressed: () {},
                       child: const Text(
                         "Купить",
