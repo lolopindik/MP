@@ -38,6 +38,8 @@ dependencies:
 
   carousel_slider: ^4.2.1
 
+  supabase_flutter: ^2.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
