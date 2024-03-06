@@ -15,8 +15,6 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
-//позже перенести в logic_page.dart
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 

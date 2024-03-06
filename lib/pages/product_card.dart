@@ -5,13 +5,13 @@ import 'package:carousel_slider/carousel_slider.dart';
 
 class ProductCard extends StatelessWidget {
   final String imagePath;
-  final int cost; 
+  final int cost;
   final String description;
   final String name;
   final List<String> imageSlider;
 
   const ProductCard({
-    super.key, 
+    super.key,
     required this.imagePath,
     required this.cost,
     required this.description,
@@ -20,7 +20,6 @@ class ProductCard extends StatelessWidget {
   });
 
   factory ProductCard.fromMap(Map<String, dynamic> product) {
-    // Apply jsonDecode to convert the 'imageSlider' JSON string to a List<String>
     List<String> imageSlider =
         jsonDecode(product['imageSlider']).cast<String>();
 
