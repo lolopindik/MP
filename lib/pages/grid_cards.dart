@@ -69,11 +69,11 @@ class _GridCardsState extends State<GridCards> {
                           ),
                         ),
                       ),
-                      const FittedBox(
+                       FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
-                          "Название товара",
-                          style: TextStyle(
+                          product['name'],
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
