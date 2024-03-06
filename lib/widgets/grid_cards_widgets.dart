@@ -86,3 +86,19 @@ Widget buildSearchBar(BuildContext context) {
     },
   );
 }
+
+Widget buildBottomBar(BuildContext context) {
+  return BottomAppBar(
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ],
+    ),
+  );
+}

@@ -1,14 +1,15 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:market_place/widgets/grid_cards_widgets.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:market_place/widgets/grid_cards_widgets.dart';
 
 class ProductCard extends StatelessWidget {
   final String imagePath;
   final int cost;
   final String description;
   final String name;
-  final List<String> imageSlider;
+  final dynamic
+      imageSlider; // Accept dynamic type for flexibility (stackoverflow)
 
   const ProductCard({
     super.key,
@@ -19,36 +20,35 @@ class ProductCard extends StatelessWidget {
     required this.imageSlider,
   });
 
-  factory ProductCard.fromMap(Map<String, dynamic> product) {
-    List<String> imageSlider =
-        jsonDecode(product['imageSlider']).cast<String>();
-
-    return ProductCard(
-      imagePath: product['imagePaths'],
-      cost: product['price'],
-      description: product['description'],
-      name: product['name'],
-      imageSlider: imageSlider,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
+    List<String> convertedImageSlider = [];
+
+    if (imageSlider is List) {
+      // If imageSlider is already a List, use it directly
+      convertedImageSlider = List<String>.from(imageSlider);
+    } else if (imageSlider is Map<String, dynamic>) {
+      // If imageSlider is a Map, try to extract the 'urls' field assuming it's a list
+      var urls = imageSlider['urls'];
+      if (urls is List) {
+        convertedImageSlider = List<String>.from(urls);
+      } else if (urls is String) {
+        // If 'urls' is a string, parse it as JSON and extract the list
+        try {
+          var urlsList = jsonDecode(urls);
+          if (urlsList is List) {
+            convertedImageSlider = List<String>.from(urlsList);
+          }
+        } catch (e) {
+          // ignore: avoid_print
+          print('Error decoding JSON: $e');
+        }
+      }
+    }
+
     return Scaffold(
       appBar: buildAppBar(context),
-      bottomNavigationBar: BottomAppBar(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
-      ),
+      bottomNavigationBar: buildBottomBar(context),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -56,7 +56,7 @@ class ProductCard extends StatelessWidget {
           children: [
             Expanded(
               child: CarouselSlider(
-                items: imageSlider.map((image) {
+                items: convertedImageSlider.map((image) {
                   return Image.network(image); // Assuming your images are URLs
                 }).toList(),
                 options: CarouselOptions(height: 200.0),
@@ -70,7 +70,9 @@ class ProductCard extends StatelessWidget {
                   Text(
                     name,
                     style: const TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.bold),
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   Text(
                     "$cost руб.",
@@ -89,8 +91,11 @@ class ProductCard extends StatelessWidget {
                   Center(
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue),
-                      onPressed: () {},
+                        backgroundColor: Colors.blue,
+                      ),
+                      onPressed: () {
+                        // Handle button press
+                      },
                       child: const Text(
                         "Купить",
                         style: TextStyle(color: Colors.white),
