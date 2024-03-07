@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:market_place/pages/authentication.dart';
 import 'package:market_place/pages/favorite_product.dart';
 import 'package:market_place/pages/shop_basket.dart';
 
@@ -42,7 +43,14 @@ AppBar buildAppBar(BuildContext context) {
     ),
       IconButton(
         icon: const Icon(Icons.supervised_user_circle, color: Colors.white),
-        onPressed: () {},
+        onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Authentication(),
+          ),
+        );
+      },
       ),
     ],
     //нужно пофикстить поиск в appbar или переместить поиск в drawer
