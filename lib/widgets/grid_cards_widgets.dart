@@ -88,17 +88,18 @@ Widget buildSearchBar(BuildContext context) {
 }
 
 Widget buildBottomBar(BuildContext context) {
-  return BottomAppBar(
+  return Padding(
+    padding: const EdgeInsets.only(bottom: 5, left: 5),
     child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ],
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ],
     ),
   );
 }
