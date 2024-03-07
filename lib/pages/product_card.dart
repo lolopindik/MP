@@ -78,7 +78,7 @@ class ProductCard extends StatelessWidget {
                         // Handle button press
                       },
                       child: const Text(
-                        "Купить",
+                        "В корзину",
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
