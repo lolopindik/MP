@@ -1,7 +1,8 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:market_place/modules/json_to_arr.dart';
 import 'package:market_place/widgets/grid_cards_widgets.dart';
+
 
 class ProductCard extends StatelessWidget {
   final String imagePath;
@@ -26,20 +27,8 @@ class ProductCard extends StatelessWidget {
     if (imageSlider is List) {
       convertedImageSlider = List<String>.from(imageSlider);
     } else if (imageSlider is Map<String, dynamic>) {
-      var urls = imageSlider['urls'];
-      if (urls is List) {
-        convertedImageSlider = List<String>.from(urls);
-      } else if (urls is String) {
-        try {
-          var urlsList = jsonDecode(urls);
-          if (urlsList is List) {
-            convertedImageSlider = List<String>.from(urlsList);
-          }
-        } catch (e) {
-          // ignore: avoid_print
-          print('Error decoding JSON: $e');
-        }
-      }
+      var jsonToArr = JsonToArr.fromJson(imageSlider);
+      convertedImageSlider = jsonToArr.urls;
     }
 
     return Scaffold(
