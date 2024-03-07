@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:market_place/pages/favorite_product.dart';
+import 'package:market_place/pages/shop_basket.dart';
 
 AppBar buildAppBar(BuildContext context) {
   return AppBar(
@@ -18,12 +20,26 @@ AppBar buildAppBar(BuildContext context) {
     actions: [
       IconButton(
         icon: const Icon(Icons.favorite, color: Colors.red),
-        onPressed: () {},
-      ),
+        onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const Favorite(),
+          ),
+        );
+      },
+    ),
       IconButton(
         icon: const Icon(Icons.shopping_basket, color: Colors.white),
-        onPressed: () {},
-      ),
+        onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const ShopBasket(),
+          ),
+        );
+      },
+    ),
       IconButton(
         icon: const Icon(Icons.supervised_user_circle, color: Colors.white),
         onPressed: () {},
