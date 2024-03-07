@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'pages/grid_cards.dart';
+import 'package:market_place/modules/logic.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 // import 'package:flutter/services.dart';
 
@@ -15,17 +15,3 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: true,
-      ),
-      home: const GridCards(),
-    );
-  }
-}
