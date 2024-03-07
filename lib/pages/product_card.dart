@@ -8,8 +8,7 @@ class ProductCard extends StatelessWidget {
   final int cost;
   final String description;
   final String name;
-  final dynamic
-      imageSlider; // Accept dynamic type for flexibility (stackoverflow)
+  final dynamic imageSlider;
 
   const ProductCard({
     super.key,
@@ -25,15 +24,12 @@ class ProductCard extends StatelessWidget {
     List<String> convertedImageSlider = [];
 
     if (imageSlider is List) {
-      // If imageSlider is already a List, use it directly
       convertedImageSlider = List<String>.from(imageSlider);
     } else if (imageSlider is Map<String, dynamic>) {
-      // If imageSlider is a Map, try to extract the 'urls' field assuming it's a list
       var urls = imageSlider['urls'];
       if (urls is List) {
         convertedImageSlider = List<String>.from(urls);
       } else if (urls is String) {
-        // If 'urls' is a string, parse it as JSON and extract the list
         try {
           var urlsList = jsonDecode(urls);
           if (urlsList is List) {
@@ -49,22 +45,20 @@ class ProductCard extends StatelessWidget {
     return Scaffold(
       appBar: buildAppBar(context),
       bottomNavigationBar: buildBottomBar(context),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: CarouselSlider(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CarouselSlider(
                 items: convertedImageSlider.map((image) {
                   return Image.network(image); // Assuming your images are URLs
                 }).toList(),
                 options: CarouselOptions(height: 200.0),
               ),
-            ),
-            const SizedBox(height: 16),
-            Expanded(
-              child: Column(
+              const SizedBox(height: 16),
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
@@ -79,12 +73,10 @@ class ProductCard extends StatelessWidget {
                     style: const TextStyle(fontSize: 18, color: Colors.green),
                   ),
                   const SizedBox(height: 16),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      child: Text(
-                        description,
-                        style: const TextStyle(fontSize: 16),
-                      ),
+                  SingleChildScrollView(
+                    child: Text(
+                      description,
+                      style: const TextStyle(fontSize: 16),
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -104,8 +96,8 @@ class ProductCard extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
