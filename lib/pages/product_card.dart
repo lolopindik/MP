@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:market_place/modules/json_to_arr.dart';
-import 'package:market_place/widgets/grid_cards_widgets.dart';
+import 'package:market_place/widgets/mp_widgets.dart';
 
 
 class ProductCard extends StatelessWidget {

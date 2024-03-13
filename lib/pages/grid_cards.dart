@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:market_place/pages/product_card.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import '../widgets/grid_cards_widgets.dart';
+import '../widgets/mp_widgets.dart';
 
 class GridCards extends StatefulWidget {
   const GridCards({super.key});
