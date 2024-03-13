@@ -6,7 +6,7 @@
 
 <h3>Added working authorization with supabase implementation</h3>
 
-![image](https://github.com/lolopindik/MP/assets/136455904/e95005fc-6a16-4de2-a24c-c0361b66b882)
+![image](https://github.com/lolopindik/MP/assets/136455904/380ed7b5-269f-4246-a997-52f0112e35f5)
 
 
 
