@@ -47,7 +47,7 @@ AppBar buildAppBar(BuildContext context) {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => Authentication(),
+            builder: (context) => const Authentication(),
           ),
         );
       },
