@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:market_place/modules/signUp.dart';
 import 'package:market_place/modules/signin.dart';
 
-
 class Authentication extends StatefulWidget {
   const Authentication({super.key});
 
@@ -28,9 +27,20 @@ class _AuthenticationState extends State<Authentication> {
     );
   }
 
+  //виджеты потом нужно будет вынести в отдельный класс
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
-      title: Text(_selectedIndex == 0 ? 'Sign Up' : 'Sign In'),
+      title: const Text(
+        'OZON',
+        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+      ),
+      backgroundColor: Colors.blue,
+      leading: IconButton(
+        icon: const Icon(Icons.arrow_back, color: Colors.white,),
+        onPressed: () {
+          Navigator.pop(context);
+        },
+      ),
     );
   }
 
