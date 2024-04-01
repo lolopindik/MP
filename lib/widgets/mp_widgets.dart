@@ -86,7 +86,7 @@ Widget buildDrawer(BuildContext context) {
 Widget buildSearchBar(BuildContext context) {
   return LayoutBuilder(
     builder: (BuildContext context, BoxConstraints constraints) {
-      if (constraints.maxWidth > 400) {
+      if (constraints.maxWidth > 480) {
         return Center(
           child: Container(
             width: constraints.maxWidth * 0.3,
